@@ -1,0 +1,84 @@
+#top
+{
+	background-color: #ccc;
+	padding : 20px;
+}
+
+.intro
+{
+	color: red;
+	font-weight: bold;
+}
+
+h2
+{
+	color :red;
+}
+
+.thisOtherClass{
+	color:red;
+}
+
+.yetAnotherClass
+{
+	color:red;
+}
+
+#top{
+	background-color: #ccc;
+	padding: 1em;
+}
+
+#top h1{
+	color: #ff0;
+}
+
+#top p
+{
+	color: red;
+	font-weight:bold;
+}
+
+p
+{
+	font: 14px/1.5 "Times New Roman", times, serif;
+	padding : 30px 10px;
+	border : 1px black solid;
+	border-width : 1px 5px 5px 1px;
+	border-color : red green blue yellow
+	margin : 10px 50px;
+}
+
+body {
+	background: white url(http://www.htmldog.com/images/bg.gif) no-repeat top right;
+}
+
+li {display: inline;}
+
+#navigation a
+{
+	display: block;
+	padding: 20px 10px;
+}
+
+#navigation, #related_links{display : none;}
+
+#navigation
+{
+	float: left;
+	width : 200px;
+}
+
+#navigation2
+{
+	float:right;
+	width : 200px;
+}
+
+#content{
+	margin: 0 200px;
+}
+
+#footer{
+	clear : left;
+}
