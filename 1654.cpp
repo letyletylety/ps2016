@@ -1,84 +1,49 @@
-#define _CRT_SECURE_NO_WARNINGS
-
-#include <iostream> // standard input & output cout cin
-#include <cstdio> // scanf printf
-#include <vector> // std::vector
+#include <iostream>
+#include <cstdio>
 #include <algorithm>
-#include <string> // std::string
-#include <queue> // std::queue
-#include <cstring> // memset
-#include <set> // std::set
-#include <utility> // std::pair, std::make_pair
-#include <map>
-
 using namespace std;
 
-typedef long long LL;
-typedef vector<int> VI;
+int	lanline[10001];
 
-#define REP(i,n) for(int i=0, i##_len=(n); i<i##_len; ++i)
-#define EACH(i,c) for(__typeof((c).begin()) i=(c).begin(),i##_end=(c).end();i!=i##_end;++i)
-
-// -------------------------- global variable
-
-
-// ; 빼먹지 않았는지 확인 ;;;;;;;;;;;;;;;;;
-// -------------------------- declare function
-
-long long lineLength(long long num, vector<long long>& arr)
+int main()
 {
-	long long ret = 0;
-	for(int i = 0 ; (size_t)i< arr.size();i++)
+	int k;
+	long long n;
+	unsigned M = 0;
+	scanf("%d%lld",&k,&n);
+
+	for(int i = 0 ; i < k ; i++)
 	{
-		ret += arr[i]/num;
+		scanf("%d", lanline+i);
+		if( M < lanline[i])
+			M = lanline[i];
 	}
-	return ret;
-}
 
-// -------------------------- main
-
-int main(int argc, char **argv)
-{
-	int n;
-	long long k;
-	scanf("%d%lld",&n,&k);
-	vector<long long> lanline(n);
-	for(int i =0 ; i<n;i++)
+	unsigned low, high, answer, mid;
+	low = 0;
+	answer = 0;
+	high = M;
+	while(low <= high)
 	{
-		scanf("%lld",&lanline[i]);
-	}
-	long long left = 0;
-	long long right = *max_element(lanline.begin(), lanline.end());
-	long long mid;
-	long long int ans = 0;
-	while(left <= right)
-	{
-	//	printf("%lld %lld\n",left, right);
+		mid = (low+high)>>1;
 
-		mid = (left + right)/2;
-		long long temp = lineLength(mid, lanline);
-
-		if(k > temp)
+	  long long int tt = 0;
+		for(int i = 0 ; i < k ;i++)
 		{
-			right = mid-1;
+			tt += (long long)(lanline[i] / mid);
 		}
-		else
+
+		if(tt < n) // 더 짧게 잘라야함
 		{
-			if(ans < mid)
-			{
-				ans = mid;
-			}
-			left = mid+1;			
+			high = mid-1;	
+		}
+		else // 더 길게 잘라야함
+		{
+			low = mid+1;
+			if(answer < mid)
+				answer = mid;
 		}
 	}
-	printf("%lld",ans);
+	printf("%u", answer);
 	return 0;
 }
-
-/* memo
-*  드디어 풀었다,,
-* long long 으로 해야하는 것과 최대값 들고있기
-*그리고 디버깅용 프린트 지우기
-*
-*
-*/
