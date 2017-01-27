@@ -42,7 +42,7 @@ int main()
 	scanf("%d", &tt);
 	update(cntTree, tt, 1, 1, 0, 200000);
 	update(sumTree, tt, tt, 1, 0, 200000);
-	for(int i = 2 ; i <= n; i++)
+	for(int i = 1 ; i < n; i++)
 	{
 		scanf("%d", &tt);
 
