@@ -40,20 +40,20 @@ int main()
 	int tt;
 	long long answer = 1LL;
 	scanf("%d", &tt);
-	update(cntTree, tt, 1, 1, 1, n);
-	update(sumTree, tt, tt, 1, 1, n);
+	update(cntTree, tt, 1, 1, 0, 200000);
+	update(sumTree, tt, tt, 1, 0, 200000);
 	for(int i = 2 ; i <= n; i++)
 	{
 		scanf("%d", &tt);
-		long long L = tt * query(cntTree, 1, tt-1, 1, 1, n) - query(sumTree, 1, tt-1, 1, 1, n);
-		long long R = query(sumTree, tt+1, n, 1, 1, n) - tt * query(cntTree, tt+1, n, 1, 1, n);
+		long long L = tt * query(cntTree, 1, tt-1, 1, 0, 200000) - query(sumTree, 1, tt-1, 1, 0, 200000);
+		long long R = query(sumTree, tt+1, 200000, 1, 0, 200000) - tt * query(cntTree, tt+1, 200000, 1, 0, 200000);
 
 		answer = answer * ((L+R)%mod);
 		answer %= mod;
 
 		printf("%lld\n", (L+R));
-		update(cntTree, tt, 1, 1, 1, n);
-		update(sumTree, tt, tt, 1, 1, n);
+		update(cntTree, tt, 1, 1, 0, 200000);
+		update(sumTree, tt, tt, 1, 0, 200000);
 	}
 	printf("%lld", answer);
 	return 0;
