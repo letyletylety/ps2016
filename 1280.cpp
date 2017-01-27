@@ -48,12 +48,12 @@ int main()
 
 		update(cntTree, tt, 1, 1, 0, 200000);
 		update(sumTree, tt, tt, 1, 0, 200000);
-		long long L = ((tt * query(cntTree, 0, tt-1, 1, 0, 200000)%mod) - (query(sumTree, 0, tt-1, 1, 0, 200000)%mod))%mod;
-		long long R = ((query(sumTree, tt+1, 200000, 1, 0, 200000))%mod - (tt * query(cntTree, tt+1, 200000, 1, 0, 200000))%mod) %mod;
+		long long L = ((i * query(cntTree, 0, tt-1, 1, 0, 200000)%mod) - (query(sumTree, 0, tt-1, 1, 0, 200000)%mod))%mod;
+		long long R = ((query(sumTree, tt+1, 200000, 1, 0, 200000))%mod - (i * query(cntTree, tt+1, 200000, 1, 0, 200000))%mod) %mod;
 
 		answer = answer * ((L%mod+R%mod)%mod);
 		answer %= mod;
-//		printf("%lld\n", (L+R));
+		printf("%lld\n", (L+R));
 	}
 	printf("%lld", answer);
 	return 0;
