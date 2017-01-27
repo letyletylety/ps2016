@@ -13,7 +13,7 @@ void update(ll *T, int idx, int val, int node, int nl, int nr)
 	if(idx < nl || nr < idx) return;
 
 	if(nl == nr)
-		T[node] = val;
+		T[node] += val;
 	else
 	{
 		int mid = (nl + nr) >>1;
@@ -51,6 +51,7 @@ int main()
 		answer = answer * ((L+R)%mod);
 		answer %= mod;
 
+		printf("%lld\n", (L+R));
 		update(cntTree, tt, 1, 1, 1, n);
 		update(sumTree, tt, tt, 1, 1, n);
 	}
