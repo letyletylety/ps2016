@@ -45,8 +45,8 @@ int main()
 	for(int i = 2 ; i <= n; i++)
 	{
 		scanf("%d", &tt);
-		long long L = query(cntTree, 1, tt-1, 1, 1, n) - tt * query(sumTree, 1, tt-1, 1, 1, n);
-		long long R = tt * query(sumTree, tt+1, n, 1, 1, n) - query(cntTree, tt+1, n, 1, 1, n) ;
+		long long L = tt * query(cntTree, 1, tt-1, 1, 1, n) - query(sumTree, 1, tt-1, 1, 1, n);
+		long long R = query(sumTree, tt+1, n, 1, 1, n) - tt * query(cntTree, tt+1, n, 1, 1, n);
 
 		answer = answer * ((L+R)%mod);
 		answer %= mod;
