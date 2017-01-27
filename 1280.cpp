@@ -45,13 +45,13 @@ int main()
 	for(int i = 2 ; i <= n; i++)
 	{
 		scanf("%d", &tt);
-		long long L = tt * query(cntTree, 1, tt-1, 1, 0, 200000) - query(sumTree, 1, tt-1, 1, 0, 200000);
-		long long R = query(sumTree, tt+1, 200000, 1, 0, 200000) - tt * query(cntTree, tt+1, 200000, 1, 0, 200000);
+		long long L = ((tt * query(cntTree, 1, tt-1, 1, 0, 200000)%mod) - (query(sumTree, 1, tt-1, 1, 0, 200000)%mod))%mod;
+		long long R = (query(sumTree, tt+1, 200000, 1, 0, 200000) - (tt * query(cntTree, tt+1, 200000, 1, 0, 200000))%mod)%mod;
 
-		answer = answer * ((L+R)%mod);
+		answer = answer * ((L%mod+R%mod)%mod);
 		answer %= mod;
 
-		printf("%lld\n", (L+R));
+//		printf("%lld\n", (L+R));
 		update(cntTree, tt, 1, 1, 0, 200000);
 		update(sumTree, tt, tt, 1, 0, 200000);
 	}
