@@ -5,15 +5,15 @@ using namespace std;
 using ll = long long;
 
 ll mod = 1e9+7;
-ll cntTree[800000];
-ll sumTree[800000];
+ll cntTree[800010];
+ll sumTree[800010];
 
 void update(ll *T, int idx, int val, int node, int nl, int nr)
 {
 	if(idx < nl || nr < idx) return;
 
 	if(nl == nr)
-		T[node] += val;
+		T[node] += (long long)val;
 	else
 	{
 		int mid = (nl + nr) >>1;
@@ -42,18 +42,22 @@ int main()
 	scanf("%d", &tt);
 	update(cntTree, tt, 1, 1, 0, 200000);
 	update(sumTree, tt, tt, 1, 0, 200000);
+
 	for(int i = 1 ; i < n; i++)
 	{
 		scanf("%d", &tt);
 
 		update(cntTree, tt, 1, 1, 0, 200000);
 		update(sumTree, tt, tt, 1, 0, 200000);
-		long long L = ((tt * query(cntTree, 0, tt-1, 1, 0, 200000)%mod) - (query(sumTree, 0, tt-1, 1, 0, 200000)%mod))%mod;
-		long long R = ((query(sumTree, tt+1, 200000, 1, 0, 200000))%mod - (tt * query(cntTree, tt+1, 200000, 1, 0, 200000))%mod) %mod;
 
-		answer = answer * ((L%mod+R%mod)%mod);
+		long long L = ((tt * query(cntTree, 0, tt-1, 1, 0, 200000) % mod) - (query(sumTree, 0, tt-1, 1, 0, 200000)%mod) + mod)%mod;
+		long long R = ((query(sumTree, tt+1, 200000, 1, 0, 200000) % mod) - (tt * query(cntTree, tt+1, 200000, 1, 0, 200000))%mod + mod) %mod;
+
+		L%=mod;
+		R%=mod;
+		answer = answer * ((L+R)%mod);
 		answer %= mod;
-		printf("%lld\n", (L+R));
+//		printf("%lld\n", (L+R));
 	}
 	printf("%lld", answer);
 	return 0;
